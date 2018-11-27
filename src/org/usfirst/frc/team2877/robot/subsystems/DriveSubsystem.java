@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2877.robot.subsystems;
 
+import org.usfirst.frc.team2877.robot.RobotMap;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -35,13 +37,14 @@ public class DriveSubsystem extends Subsystem {
 	double m_originalPosition;
 	public DriveSubsystem() {
 	//initialization
-		leftLeader = new WPI_TalonSRX(0);
-		leftFollower = new WPI_TalonSRX(1);
-		rightLeader = new WPI_TalonSRX(2);
+		leftLeader = new WPI_TalonSRX(RobotMap.CT_ID_LEFT_LEADER);
+		leftFollower = new WPI_TalonSRX(RobotMap.CT_ID_LEFT_FOLLOWER);
+		rightLeader = new WPI_TalonSRX(RobotMap.CT_ID_RIGHT_LEADER);
+		rightFollower = new WPI_TalonSRX(RobotMap.CT_ID_RIGHT_FOLLOWER);
 		leftLeader.set(ControlMode.PercentOutput, 0.0);
-		leftFollower.set(ControlMode.Follower, 0);
+		leftFollower.set(ControlMode.Follower, RobotMap.CT_ID_LEFT_LEADER);
 		rightLeader.set(ControlMode.PercentOutput, 0.0);
-		rightFollower.set(ControlMode.Follower, 2);
+		rightFollower.set(ControlMode.Follower, RobotMap.CT_ID_RIGHT_LEADER);
 		
 		robotDrive = new DifferentialDrive(leftLeader, rightLeader);
 	}
@@ -49,11 +52,19 @@ public class DriveSubsystem extends Subsystem {
 	public void driveForward() {
 		robotDrive.arcadeDrive(0.5, 0);
 	}
+	public void driveForward(double speed) {
+		robotDrive.arcadeDrive(speed, 0);
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+
+	public void stop() {
+		// TODO Auto-generated method stub
+		robotDrive.arcadeDrive(0.0, 0);
+	}
     
 }
 
