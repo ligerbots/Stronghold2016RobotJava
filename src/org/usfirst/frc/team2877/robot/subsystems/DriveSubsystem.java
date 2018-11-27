@@ -35,6 +35,9 @@ public class DriveSubsystem extends Subsystem {
 	double m_originalPosition;
 	public DriveSubsystem() {
 	//initialization
+		leftLeader = new WPI_TalonSRX(0);
+		leftFollower = new WPI_TalonSRX(1);
+		rightLeader = new WPI_TalonSRX(2);
 		leftLeader.set(ControlMode.PercentOutput, 0.0);
 		leftFollower.set(ControlMode.Follower, 0);
 		rightLeader.set(ControlMode.PercentOutput, 0.0);
