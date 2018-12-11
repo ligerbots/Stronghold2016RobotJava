@@ -17,9 +17,11 @@ public class DriveSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	WPI_TalonSRX leftLeader;
-	WPI_TalonSRX leftFollower;
+	WPI_TalonSRX leftFollower1;
+	WPI_TalonSRX leftFollower2;
 	WPI_TalonSRX rightLeader;
-	WPI_TalonSRX rightFollower;
+	WPI_TalonSRX rightFollower1;
+	WPI_TalonSRX rightFollower2;
 	//The rest of the talon declarations
 
 	DifferentialDrive robotDrive;
@@ -38,17 +40,43 @@ public class DriveSubsystem extends Subsystem {
 	public DriveSubsystem() {
 	//initialization
 		leftLeader = new WPI_TalonSRX(RobotMap.CT_ID_LEFT_LEADER);
-		leftFollower = new WPI_TalonSRX(RobotMap.CT_ID_LEFT_FOLLOWER);
+		leftFollower1 = new WPI_TalonSRX(RobotMap.CT_ID_LEFT_FOLLOWER1);
+		leftFollower2 = new WPI_TalonSRX(RobotMap.CT_ID_LEFT_FOLLOWER2);
 		rightLeader = new WPI_TalonSRX(RobotMap.CT_ID_RIGHT_LEADER);
-		rightFollower = new WPI_TalonSRX(RobotMap.CT_ID_RIGHT_FOLLOWER);
+		rightFollower1 = new WPI_TalonSRX(RobotMap.CT_ID_RIGHT_FOLLOWER1);
+		rightFollower2 = new WPI_TalonSRX(RobotMap.CT_ID_RIGHT_FOLLOWER2);
 		leftLeader.set(ControlMode.PercentOutput, 0.0);
-		leftFollower.set(ControlMode.Follower, RobotMap.CT_ID_LEFT_LEADER);
+		leftFollower1.set(ControlMode.Follower, RobotMap.CT_ID_LEFT_LEADER);
+		leftFollower2.set(ControlMode.Follower, RobotMap.CT_ID_LEFT_LEADER);
 		rightLeader.set(ControlMode.PercentOutput, 0.0);
-		rightFollower.set(ControlMode.Follower, RobotMap.CT_ID_RIGHT_LEADER);
-		
+		rightFollower1.set(ControlMode.Follower, RobotMap.CT_ID_RIGHT_LEADER);
+		rightFollower2.set(ControlMode.Follower, RobotMap.CT_ID_RIGHT_LEADER);
 		robotDrive = new DifferentialDrive(leftLeader, rightLeader);
 	}
 	
+	public void SetInitialPosition(double x, double y) {
+		m_pos.X = x;
+		m_pos.Y = y;
+	}
+
+	public void updatePosition() {
+		double distance = (getRightEncoderPosition() / TICKS_PER_INCH) 
+		- (m_originalDistance + m_prevDistance);
+		m_prevDistance += distance;
+		m_pos.Angle = navXSubsystem.GetYaw();
+		double xMoved = Math.cos(m_pos.Angle) * distance;
+		double yMoved = Math.sqrt(distance * distance - xMoved * xMoved);
+		m_pos.X += xMoved;
+		m_pos.Y += yMoved;
+		if (Robot.ticks % 300 == 0)
+		// printl("POSITION: X=%5.2f Y=%5.2f Angle=%5.2f\n", m_pos.X, m_pos.Y, m_pos.Angle);
+	}
+
+	public void drive(double x, double y) {
+		robotDrive.arcadeDrive(x, y);
+		updatePosition();
+	}
+
 	public void driveForward() {
 		robotDrive.arcadeDrive(0.5, 0);
 	}
