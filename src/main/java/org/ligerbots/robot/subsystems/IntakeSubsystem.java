@@ -59,7 +59,7 @@ public class IntakeSubsystem extends Subsystem {
     public void RollPercent(double percentage) {
         rollers.set(ControlMode.PercentOutput, percentage);
     }
-
+    // Intake actions
     public void SetIntakeArmUp() {
         if (intakeArmSolenoid.get() == Value.kReverse) return; //If not already up
         intakeArmSolenoid.set(Value.kReverse);
@@ -74,6 +74,13 @@ public class IntakeSubsystem extends Subsystem {
         return intakeArmSolenoid.get();
     }
 
+    public void ToggleIntake() {
+        if (GetIntakeArmValue() == Value.kForward)
+            SetIntakeArmUp();
+        else
+            SetIntakeArmDown();
+    }
+    // Switches
     public boolean ShooterSwitchPressed() {
         return inShooterSwitch.get();
     }
