@@ -17,20 +17,27 @@ public class WedgeSubsystem extends Subsystem {
         wedgeDownSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_WEGDE_DOWN);
     }
 
-    public boolean WedgeDown() {
+    public boolean IsWedgeDown() {
         return wedgeDownSwitch.get();
     }
 
-    public DoubleSolenoid.Value getWedgeValue() {
+    public DoubleSolenoid.Value GetWedgeValue() {
         return wedgeArmSolenoid.get();
     }
 
-    public void liftWedge() {
+    public void LiftWedge() {
         wedgeArmSolenoid.set(Value.kReverse);
     }
 
-    public void lowerWedge() {
+    public void LowerWedge() {
         wedgeArmSolenoid.set(Value.kForward);
+    }
+
+    public void ToggleWedge() {
+        if (GetWedgeValue() == Value.kForward)
+            LiftWedge();
+        else
+            LowerWedge();
     }
 
     @Override
