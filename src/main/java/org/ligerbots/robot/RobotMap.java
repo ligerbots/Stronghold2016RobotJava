@@ -70,4 +70,10 @@ public class RobotMap {
 	// backwards to keep the robot from tipping over.
 	public static final float MAX_PITCH_ANGLE = 45;
 
+	//Flap limits
+	public static final double FlapLeftHighLimit = 25.8;
+	public static final double FlapLeftLowLimit = 148;
+	public static final double FlapRightHighLimit = 6.7;
+	public static final double FlapRightLowLimit = 111;
+
 }
