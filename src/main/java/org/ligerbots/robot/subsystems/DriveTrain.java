@@ -43,16 +43,23 @@ public class DriveTrain extends Subsystem {
     }
 
     //Functionality methods
-    public void shiftUp() {
+    public void ShiftUp() {
         shifterSolenoid.set(Value.kForward);
     }
 
-    public void shiftDown() {
+    public void ShiftDown() {
         shifterSolenoid.set(Value.kReverse);
     }
 
-    public Boolean isShiftedUp() {
+    public Boolean IsShiftedUp() {
         return shifterSolenoid.get() == Value.kForward;
+    }
+
+    public void ToggleGear() {
+        if (IsShiftedUp())
+            ShiftDown();
+        else
+            ShiftUp();
     }
 
     public void drive(double x, double y) {
