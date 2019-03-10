@@ -23,21 +23,22 @@ public class DriveTrain extends Subsystem {
     DifferentialDrive diffDrive;
 
     public DriveTrain() {
+        //Initialize all motors
         rightLeader = new WPI_TalonSRX(RobotMap.CT_DRIVE_RIGHT1);
         rightFollower1 = new WPI_TalonSRX(RobotMap.CT_DRIVE_RIGHT2);
         rightFollower2 = new WPI_TalonSRX(RobotMap.CT_DRIVE_RIGHT3);
         leftLeader = new WPI_TalonSRX(RobotMap.CT_DRIVE_LEFT1);
         leftFollower1 = new WPI_TalonSRX(RobotMap.CT_DRIVE_LEFT2);
         leftFollower2 = new WPI_TalonSRX(RobotMap.CT_DRIVE_LEFT3);
-
+        //Set master/slave
         rightFollower1.follow(rightLeader);
         rightFollower2.follow(rightLeader);
         leftFollower1.follow(leftLeader);
         leftFollower2.follow(leftLeader);
-
+        //Initialize drive method
         diffDrive = new DifferentialDrive(leftLeader, rightLeader);
         diffDrive.setSubsystem("DriveTrain");
-
+        //Solenoid for gear shifting
         shifterSolenoid = new DoubleSolenoid(RobotMap.PCM_CAN, RobotMap.PCM_SHIFTER_HIGH_GEAR, RobotMap.PCM_SHIFTER_LOW_GEAR);
     }
 
