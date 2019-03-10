@@ -7,6 +7,11 @@
 
 package org.ligerbots.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.ligerbots.robot.commands.*;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -39,4 +44,47 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+
+	//Intake is rollers, wedge is flap
+	XboxController xbox = new XboxController(0);
+
+	Button IntakeShootSequence;
+	Button ToggleFlapCommand;
+	Button ShootCommand;
+	Button GearShiftCommand;
+	Button ToggleIntakeCommand;
+	Button LEDToggleCommand;
+	Button CompressorToggleCommand;
+
+	public OI() {
+		//Map joystick buttons to each command (no autonomous included)
+		IntakeShootSequence = new JoystickButton(xbox, 1);
+		
+		ToggleFlapCommand = new JoystickButton(xbox, 2);
+		
+		ShootCommand = new JoystickButton(xbox, 3);
+		
+		GearShiftCommand = new JoystickButton(xbox, 5);
+		
+		ToggleIntakeCommand = new JoystickButton(xbox, 6);
+		
+		LEDToggleCommand = new JoystickButton(xbox, 7);
+		
+		CompressorToggleCommand = new JoystickButton(xbox, 8);
+
+
+		IntakeShootSequence.whenPressed(new IntakeShootSequence());
+		
+		ToggleFlapCommand.whenPressed(new ToggleFlapCommand());
+		
+		ShootCommand.whenPressed(new ShootCommand());
+		
+		GearShiftCommand.whenPressed(new GearShiftCommand());
+		
+		ToggleIntakeCommand.whenPressed(new IntakeToggleCommand());
+		
+		LEDToggleCommand.whenPressed(new LEDToggleCommand());
+		
+		CompressorToggleCommand.whenPressed(new CompressorToggleCommand());
+	}
 }
