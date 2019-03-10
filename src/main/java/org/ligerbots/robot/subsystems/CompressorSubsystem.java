@@ -30,8 +30,15 @@ public class CompressorSubsystem extends Subsystem {
         compressor.setClosedLoopControl(on);
     }
 
-    public boolean CompressorOn() {
+    public boolean IsCompressorOn() {
         return compressor.getClosedLoopControl();
+    }
+
+    public void ToggleCompressor() {
+        if (IsCompressorOn())
+            SetCompressor(false);
+        else
+            SetCompressor(true);
     }
 
     @Override
