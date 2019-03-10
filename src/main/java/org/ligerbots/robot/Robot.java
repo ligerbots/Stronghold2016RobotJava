@@ -7,6 +7,13 @@
 
 package org.ligerbots.robot;
 
+import org.ligerbots.robot.subsystems.CompressorSubsystem;
+import org.ligerbots.robot.subsystems.DriveTrain;
+import org.ligerbots.robot.subsystems.FlapSubsystem;
+import org.ligerbots.robot.subsystems.IntakeSubsystem;
+import org.ligerbots.robot.subsystems.ShooterSubsystem;
+import org.ligerbots.robot.subsystems.WedgeSubsystem;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,8 +25,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-	
+	;
+	public static CompressorSubsystem compressor;
+	public static DriveTrain drivetrain;
+	public static FlapSubsystem flaps;
+	public static IntakeSubsystem intake;
 	public static OI oi;
+	public static ShooterSubsystem shooter;
+	public static WedgeSubsystem wedge;
 
 	/**
 	 * This function is run when the robot is first started up and should be
