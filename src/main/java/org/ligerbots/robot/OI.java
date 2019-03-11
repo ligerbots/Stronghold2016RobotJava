@@ -10,7 +10,7 @@ package org.ligerbots.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.ligerbots.robot.commands.*;
+import org.ligerbots.robot.Commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator

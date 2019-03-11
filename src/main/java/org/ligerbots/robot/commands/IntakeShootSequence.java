@@ -1,4 +1,4 @@
-package org.ligerbots.robot.commands;
+package org.ligerbots.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 

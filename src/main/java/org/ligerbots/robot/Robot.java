@@ -7,12 +7,12 @@
 
 package org.ligerbots.robot;
 
-import org.ligerbots.robot.subsystems.CompressorSubsystem;
-import org.ligerbots.robot.subsystems.DriveTrain;
-import org.ligerbots.robot.subsystems.FlapSubsystem;
-import org.ligerbots.robot.subsystems.IntakeSubsystem;
-import org.ligerbots.robot.subsystems.ShooterSubsystem;
-import org.ligerbots.robot.subsystems.WedgeSubsystem;
+import org.ligerbots.robot.Subsystems.CompressorSubsystem;
+import org.ligerbots.robot.Subsystems.DriveTrain;
+import org.ligerbots.robot.Subsystems.FlapSubsystem;
+import org.ligerbots.robot.Subsystems.IntakeSubsystem;
+import org.ligerbots.robot.Subsystems.ShooterSubsystem;
+import org.ligerbots.robot.Subsystems.WedgeSubsystem;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;

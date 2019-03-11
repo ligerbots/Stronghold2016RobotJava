@@ -1,4 +1,4 @@
-package org.ligerbots.robot.subsystems;
+package org.ligerbots.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;

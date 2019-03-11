@@ -1,4 +1,6 @@
-package org.ligerbots.robot.commands;
+package org.ligerbots.robot.Commands;
+
+import org.ligerbots.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -6,6 +8,7 @@ public class ToggleFlapCommand extends Command {
     public ToggleFlapCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(Robot.flaps);
     }
 
     // Called just before this Command runs the first time
@@ -17,7 +20,7 @@ public class ToggleFlapCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()

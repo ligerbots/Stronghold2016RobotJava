@@ -1,7 +1,7 @@
-package org.ligerbots.robot.commands;
+package org.ligerbots.robot.Commands;
 
 import org.ligerbots.robot.Robot;
-import org.ligerbots.robot.subsystems.DriveTrain;
+import org.ligerbots.robot.Subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -12,6 +12,10 @@ public class GearShiftCommand extends Command {
 
     ShiftDirection action;
     DriveTrain drivetrain;
+
+    public GearShiftCommand() {
+        action = ShiftDirection.TOGGLE;
+    }
 
     public GearShiftCommand(ShiftDirection direction) {
         // Use requires() here to declare subsystem dependencies

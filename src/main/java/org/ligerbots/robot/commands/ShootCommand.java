@@ -1,9 +1,9 @@
-package org.ligerbots.robot.commands;
+package org.ligerbots.robot.Commands;
 
 import org.ligerbots.robot.Robot;
-import org.ligerbots.robot.subsystems.IntakeSubsystem;
-import org.ligerbots.robot.subsystems.ShooterSubsystem;
-import org.ligerbots.robot.subsystems.WedgeSubsystem;
+import org.ligerbots.robot.Subsystems.IntakeSubsystem;
+import org.ligerbots.robot.Subsystems.ShooterSubsystem;
+import org.ligerbots.robot.Subsystems.WedgeSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
