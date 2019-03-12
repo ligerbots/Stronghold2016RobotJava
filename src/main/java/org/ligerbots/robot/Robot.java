@@ -14,8 +14,9 @@ import org.ligerbots.robot.Subsystems.IntakeSubsystem;
 import org.ligerbots.robot.Subsystems.ShooterSubsystem;
 import org.ligerbots.robot.Subsystems.WedgeSubsystem;
 
+import org.ligerbots.robot.Commands.JoystickDriveCommand;
+
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,6 +35,8 @@ public class Robot extends TimedRobot {
 	public static ShooterSubsystem shooter;
 	public static WedgeSubsystem wedge;
 
+	public static JoystickDriveCommand joystickDrive;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -51,7 +54,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		joystickDrive.cancel(); //Stop accepting input
 	}
 
 	@Override
@@ -81,6 +84,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		joystickDrive.start(); //Starts polling for user input to control the robot
 	}
 
 	/**

@@ -46,7 +46,7 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 
 	//Intake is rollers, wedge is flap
-	XboxController xbox = new XboxController(0);
+	public XboxController xbox = new XboxController(0);
 
 	Button IntakeShootSequence;
 	Button ToggleFlapCommand;
