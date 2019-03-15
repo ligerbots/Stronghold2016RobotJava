@@ -68,7 +68,7 @@ public class OI {
 		
 		ToggleIntakeCommand = new JoystickButton(xbox, 6);
 		
-		LEDToggleCommand = new JoystickButton(xbox, 7);
+		// LEDToggleCommand = new JoystickButton(xbox, 7);
 		
 		CompressorToggleCommand = new JoystickButton(xbox, 8);
 
@@ -83,7 +83,7 @@ public class OI {
 		
 		ToggleIntakeCommand.whenPressed(new IntakeToggleCommand());
 		
-		LEDToggleCommand.whenPressed(new LEDToggleCommand());
+		// LEDToggleCommand.whenPressed(new LEDToggleCommand());
 		
 		CompressorToggleCommand.whenPressed(new CompressorToggleCommand());
 	}

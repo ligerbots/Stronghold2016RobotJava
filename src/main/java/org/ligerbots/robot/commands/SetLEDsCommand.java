@@ -1,14 +1,11 @@
 package org.ligerbots.robot.Commands;
 
-import org.ligerbots.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeToggleCommand extends Command {
-    public IntakeToggleCommand() {
+public class SetLEDsCommand extends Command {
+    public SetLEDsCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +17,7 @@ public class IntakeToggleCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.intake.ToggleIntakeArm();
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
