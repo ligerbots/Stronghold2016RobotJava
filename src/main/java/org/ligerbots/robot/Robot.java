@@ -39,7 +39,6 @@ public class Robot extends TimedRobot {
 
 	public static IntakeRollerCommand intakeRoller;
 	public static JoystickDriveCommand joystickDrive;
-	public static I2C leds;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -52,8 +51,6 @@ public class Robot extends TimedRobot {
 		intake = new IntakeSubsystem();
 		shooter = new ShooterSubsystem();
 		wedge = new WedgeSubsystem();
-
-		leds = new I2C(Port.kOnboard, 42);
 
 		joystickDrive = new JoystickDriveCommand();
 		intakeRoller = new IntakeRollerCommand();
