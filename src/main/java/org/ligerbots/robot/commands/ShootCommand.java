@@ -17,8 +17,8 @@ public class ShootCommand extends Command {
     IntakeSubsystem intake;
     ShooterSubsystem shooter;
 
-    boolean done = false;
-    int ticks = 0;
+    boolean done;
+    int ticks;
 
     // Called just before this Command runs the first time
     @Override
@@ -27,11 +27,14 @@ public class ShootCommand extends Command {
         intake = Robot.intake;
         shooter = Robot.shooter;
 
-        if (!intake.IntakeReadyToFire())
-            done = true;
-        else {
-            //TODO - LEDS for shooting animation
-        }
+        done = false;
+        ticks = 0;
+
+        // if (!intake.IntakeReadyToFire())
+        //     done = true;
+        // else {
+        //     //TODO - LEDS for shooting animation
+        // }
 
         setInterruptible(false);
     }
@@ -42,8 +45,9 @@ public class ShootCommand extends Command {
         ticks++;
         if (ticks == 1)
             shooter.Fire();
-        else if (ticks == 25)
+        else if (ticks == 25) {
             done = true;
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

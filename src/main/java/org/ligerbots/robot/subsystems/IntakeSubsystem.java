@@ -74,11 +74,15 @@ public class IntakeSubsystem extends Subsystem {
         return intakeArmSolenoid.get();
     }
 
-    public void ToggleIntake() {
+    public void ToggleIntakeArm() {
         if (GetIntakeArmValue() == Value.kForward)
             SetIntakeArmUp();
         else
             SetIntakeArmDown();
+    }
+
+    public void SetRollSpeed(double speed) {
+        rollers.set(speed);
     }
     // Switches
     public boolean ShooterSwitchPressed() {

@@ -13,10 +13,12 @@ import org.ligerbots.robot.Subsystems.FlapSubsystem;
 import org.ligerbots.robot.Subsystems.IntakeSubsystem;
 import org.ligerbots.robot.Subsystems.ShooterSubsystem;
 import org.ligerbots.robot.Subsystems.WedgeSubsystem;
-
+import org.ligerbots.robot.Commands.IntakeRollerCommand;
 import org.ligerbots.robot.Commands.JoystickDriveCommand;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Scheduler;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,7 +37,9 @@ public class Robot extends TimedRobot {
 	public static ShooterSubsystem shooter;
 	public static WedgeSubsystem wedge;
 
+	public static IntakeRollerCommand intakeRoller;
 	public static JoystickDriveCommand joystickDrive;
+	public static I2C leds;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -43,8 +47,21 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		compressor = new CompressorSubsystem();
+		drivetrain = new DriveTrain();
+		intake = new IntakeSubsystem();
+		shooter = new ShooterSubsystem();
+		wedge = new WedgeSubsystem();
+
+		leds = new I2C(Port.kOnboard, 42);
+
+		joystickDrive = new JoystickDriveCommand();
+		intakeRoller = new IntakeRollerCommand();
+
 		oi = new OI();
-		
+
+		//Default stuff
+		compressor.SetCompressor(false);
 	}
 
 	/**
@@ -55,6 +72,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledInit() {
 		joystickDrive.cancel(); //Stop accepting input
+		intakeRoller.cancel();
 	}
 
 	@Override
@@ -85,6 +103,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		joystickDrive.start(); //Starts polling for user input to control the robot
+		intakeRoller.start();
 	}
 
 	/**

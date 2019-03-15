@@ -63,6 +63,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void drive(double x, double y) {
+        //TODO user friendly driving - scales power up over time
         diffDrive.arcadeDrive(x, y);
     }
 
