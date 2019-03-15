@@ -60,7 +60,7 @@ public class OI {
 		//Map joystick buttons to each command (no autonomous included)
 		IntakeShootSequence = new JoystickButton(xbox, 1);
 		
-		ToggleFlapCommand = new JoystickButton(xbox, 2);
+		// ToggleFlapCommand = new JoystickButton(xbox, 2);
 		
 		ShootCommand = new JoystickButton(xbox, 3);
 		
@@ -75,7 +75,7 @@ public class OI {
 
 		IntakeShootSequence.whenPressed(new IntakeShootSequence());
 		
-		ToggleFlapCommand.whenPressed(new ToggleFlapCommand());
+		// ToggleFlapCommand.whenPressed(new ToggleFlapCommand());
 		
 		ShootCommand.whenPressed(new ShootCommand());
 		
