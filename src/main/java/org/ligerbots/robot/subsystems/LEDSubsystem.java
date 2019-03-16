@@ -3,12 +3,13 @@ package org.ligerbots.robot.Subsystems;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //NAVX, prevent tipping, 
 public class LEDSubsystem extends Subsystem {
     I2C ledI2C;
     
     public enum LEDState {
-        OFF, SHOOT, ON
+        OFF, SHOOT, RED, BLUE
     }
 
     public LEDSubsystem() {
@@ -25,7 +26,11 @@ public class LEDSubsystem extends Subsystem {
             case SHOOT:
                 bytes[0] = 'S';
                 break;
-            case ON:
+            case RED:
+                bytes[0] = 'R';
+                break;
+            case BLUE:
+                bytes[0] = 'B';
                 break;
         }
 

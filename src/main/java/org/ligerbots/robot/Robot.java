@@ -11,15 +11,18 @@ import org.ligerbots.robot.Subsystems.CompressorSubsystem;
 import org.ligerbots.robot.Subsystems.DriveTrain;
 import org.ligerbots.robot.Subsystems.FlapSubsystem;
 import org.ligerbots.robot.Subsystems.IntakeSubsystem;
+import org.ligerbots.robot.Subsystems.LEDSubsystem;
 import org.ligerbots.robot.Subsystems.ShooterSubsystem;
 import org.ligerbots.robot.Subsystems.WedgeSubsystem;
+import org.ligerbots.robot.Subsystems.LEDSubsystem.LEDState;
 import org.ligerbots.robot.Commands.IntakeRollerCommand;
 import org.ligerbots.robot.Commands.JoystickDriveCommand;
 
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -28,9 +31,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-	;
 	public static CompressorSubsystem compressor;
 	public static DriveTrain drivetrain;
+	public static LEDSubsystem leds;
 	public static FlapSubsystem flaps;
 	public static IntakeSubsystem intake;
 	public static OI oi;
@@ -40,6 +43,13 @@ public class Robot extends TimedRobot {
 	public static IntakeRollerCommand intakeRoller;
 	public static JoystickDriveCommand joystickDrive;
 
+	public static SmartDashboard smartDashboard;
+	public static SendableChooser ledChooser;
+
+	public static LEDState cachedLEDState;
+
+	public static double ticks;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -48,6 +58,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		compressor = new CompressorSubsystem();
 		drivetrain = new DriveTrain();
+		leds = new LEDSubsystem();
 		intake = new IntakeSubsystem();
 		shooter = new ShooterSubsystem();
 		wedge = new WedgeSubsystem();
@@ -59,6 +70,16 @@ public class Robot extends TimedRobot {
 
 		//Default stuff
 		compressor.SetCompressor(false);
+		ticks = 0;
+
+		//LED Options in smartdashboard
+        ledChooser = new SendableChooser();
+        ledChooser.addOption("Red", LEDState.RED);
+        ledChooser.addOption("Blue", LEDState.BLUE);
+        ledChooser.addOption("Shoot", LEDState.SHOOT);
+        ledChooser.addOption("Off", LEDState.OFF);
+		ledChooser.close();
+		smartDashboard.putData("LED State", ledChooser);
 	}
 
 	/**
@@ -99,8 +120,10 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		ticks = 0;
 		joystickDrive.start(); //Starts polling for user input to control the robot
 		intakeRoller.start();
+
 	}
 
 	/**
@@ -108,7 +131,25 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		AllPeriodic();
+
 		Scheduler.getInstance().run();
+	}
+
+	public void AllPeriodic() { 
+		if (ticks % 20 == 0) {
+			compressor.SendValuesToSmartDashboard();
+			drivetrain.SendValuesToSmartDashboard();
+
+			//LED Control via smartdashboard
+			LEDState currentLEDSelection = (LEDState) ledChooser.getSelected();
+			if (currentLEDSelection != cachedLEDState) {
+				cachedLEDState = currentLEDSelection;
+				leds.SetLEDs(currentLEDSelection);
+			}
+		}
+
+		ticks++;
 	}
 
 	/**
