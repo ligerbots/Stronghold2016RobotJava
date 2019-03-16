@@ -1,15 +1,15 @@
 package org.ligerbots.robot.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 
 import org.ligerbots.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
     WPI_TalonSRX rightLeader;
@@ -20,7 +20,11 @@ public class DriveTrain extends Subsystem {
     WPI_TalonSRX leftFollower2;
 
     DoubleSolenoid shifterSolenoid;
-    DifferentialDrive diffDrive;
+    AHRS navx;
+
+    double cacheX, cacheY;
+    
+    public static DifferentialDrive diffDrive;
 
     public DriveTrain() {
         //Initialize all motors
@@ -38,8 +42,11 @@ public class DriveTrain extends Subsystem {
         //Initialize drive method
         diffDrive = new DifferentialDrive(leftLeader, rightLeader);
         diffDrive.setSubsystem("DriveTrain");
+        cacheX = 0; cacheY = 0;
         //Solenoid for gear shifting
         shifterSolenoid = new DoubleSolenoid(RobotMap.PCM_CAN, RobotMap.PCM_SHIFTER_HIGH_GEAR, RobotMap.PCM_SHIFTER_LOW_GEAR);
+        //NAVX
+       
     }
 
     //Functionality methods
@@ -62,9 +69,27 @@ public class DriveTrain extends Subsystem {
             ShiftUp();
     }
 
-    public void drive(double x, double y) {
+    public double getLeftOutput() {
+        return leftLeader.getMotorOutputPercent();
+    }
+
+    public double getRightOutput() {
+        return rightLeader.getMotorOutputPercent();
+    }
+
+    public void drive(double x, double y) { //foward left negative
         //TODO user friendly driving - scales power up over time
+        // double outputX = x > 0 ? Math.min(cacheX-0.02, x) : Math.min(cacheX+0.02, x);
+        // double outputY = y > 0 ? Math.min(cacheY-0.02, y) : Math.min(cacheY+0.02, y);
+        // diffDrive.arcadeDrive(outputX, outputY);
+
+        // cacheX = outputX; cacheY = outputY;
         diffDrive.arcadeDrive(x, y);
+    }
+
+    public void SendValuesToSmartDashboard() {
+        SmartDashboard.putNumber("DriveTrain/LeftOutput", getLeftOutput());
+        SmartDashboard.putNumber("DriveTrain/RightOutput", getRightOutput());
     }
 
     @Override

@@ -53,7 +53,7 @@ public class OI {
 	Button ShootCommand;
 	Button GearShiftCommand;
 	Button ToggleIntakeCommand;
-	Button LEDToggleCommand;
+	Button WedgeToggleCommand;
 	Button CompressorToggleCommand;
 
 	public OI() {
@@ -68,7 +68,7 @@ public class OI {
 		
 		ToggleIntakeCommand = new JoystickButton(xbox, 6);
 		
-		// LEDToggleCommand = new JoystickButton(xbox, 7);
+		WedgeToggleCommand = new JoystickButton(xbox, 7);
 		
 		CompressorToggleCommand = new JoystickButton(xbox, 8);
 
@@ -83,7 +83,7 @@ public class OI {
 		
 		ToggleIntakeCommand.whenPressed(new IntakeToggleCommand());
 		
-		// LEDToggleCommand.whenPressed(new LEDToggleCommand());
+		WedgeToggleCommand.whenPressed(new WedgeToggleCommand());
 		
 		CompressorToggleCommand.whenPressed(new CompressorToggleCommand());
 	}

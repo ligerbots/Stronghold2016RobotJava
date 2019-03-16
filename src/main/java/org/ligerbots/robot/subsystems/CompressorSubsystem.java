@@ -3,7 +3,9 @@ package org.ligerbots.robot.Subsystems;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.ligerbots.robot.Robot;
 import org.ligerbots.robot.RobotMap;
 
 public class CompressorSubsystem extends Subsystem {
@@ -17,7 +19,7 @@ public class CompressorSubsystem extends Subsystem {
         compressor = new Compressor(RobotMap.PCM_CAN);
     }
 
-    public double GetPSI() {
+    public double GetPSI() { //DOES NOT WORK
         double currentReading = pressureSensor.getVoltage();
         // formula from datasheet:
         // http://www.revrobotics.com/wp-content/uploads/2015/11/REV-11-1107-DS-00.pdf
@@ -39,6 +41,10 @@ public class CompressorSubsystem extends Subsystem {
             SetCompressor(false);
         else
             SetCompressor(true);
+    }
+
+    public void SendValuesToSmartDashboard() {
+        SmartDashboard.putBoolean("Compressor/On", IsCompressorOn());
     }
 
     @Override
