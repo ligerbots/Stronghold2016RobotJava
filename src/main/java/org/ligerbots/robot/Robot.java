@@ -140,6 +140,7 @@ public class Robot extends TimedRobot {
 		if (ticks % 20 == 0) {
 			compressor.SendValuesToSmartDashboard();
 			drivetrain.SendValuesToSmartDashboard();
+			intake.SendValuesToSmartDashboard();
 
 			//LED Control via smartdashboard
 			LEDState currentLEDSelection = (LEDState) ledChooser.getSelected();

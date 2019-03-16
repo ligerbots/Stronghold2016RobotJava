@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IntakeSubsystem extends Subsystem {
     DoubleSolenoid intakeArmSolenoid;
@@ -105,6 +106,11 @@ public class IntakeSubsystem extends Subsystem {
         return (GetIntakeArmValue() == Value.kReverse) && InShooterPosition();
     }
 
+    public void SendValuesToSmartDashboard() {
+        SmartDashboard.putBoolean("Intake/1stPosition", InDefencesCrossingPosition());
+        SmartDashboard.putBoolean("Intake/2ndPosition", ShooterSwitchPressed());
+        SmartDashboard.putNumber("Intake/Distance", ballPositionSensor.getVoltage());
+    }
 
     @Override
     protected void initDefaultCommand() {

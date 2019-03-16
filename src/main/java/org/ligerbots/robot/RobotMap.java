@@ -77,6 +77,6 @@ public class RobotMap {
 	public static final double FlapRightLowLimit = 111;
 
 	//Roller values
-	public static final double ROLLER_SPEED = 1;
+	public static final double ROLLER_SPEED = 0.5;
 
 }
