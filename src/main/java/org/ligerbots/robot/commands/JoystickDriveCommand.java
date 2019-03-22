@@ -25,7 +25,7 @@ public class JoystickDriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.drivetrain.drive(controller.getRawAxis(1), controller.getRawAxis(4));
+        Robot.drivetrain.drive(controller.getRawAxis(1), -controller.getRawAxis(4));
     }
 
     // Make this return true when this Command no longer needs to run execute()
