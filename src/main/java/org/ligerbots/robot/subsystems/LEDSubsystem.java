@@ -9,7 +9,7 @@ public class LEDSubsystem extends Subsystem {
     I2C ledI2C;
     
     public enum LEDState {
-        OFF, SHOOT, RED, BLUE
+        OFF, SHOOT, RED, BLUE, AUTO
     }
 
     public LEDSubsystem() {
@@ -31,6 +31,9 @@ public class LEDSubsystem extends Subsystem {
                 break;
             case BLUE:
                 bytes[0] = 'B';
+                break;
+            case AUTO:
+                bytes[0] = 'A';
                 break;
         }
 

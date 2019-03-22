@@ -76,7 +76,8 @@ public class Robot extends TimedRobot {
         ledChooser = new SendableChooser();
         ledChooser.addOption("Red", LEDState.RED);
         ledChooser.addOption("Blue", LEDState.BLUE);
-        ledChooser.addOption("Shoot", LEDState.SHOOT);
+		ledChooser.addOption("Shoot", LEDState.SHOOT);
+		ledChooser.addOption("Auto", LEDState.AUTO);
         ledChooser.addOption("Off", LEDState.OFF);
 		ledChooser.close();
 		smartDashboard.putData("LED State", ledChooser);
