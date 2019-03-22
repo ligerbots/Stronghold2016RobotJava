@@ -12,7 +12,7 @@ public class IntakeShootSequence extends Command {
     double untilNextState;
     
     static enum BallState {
-        LATCHED, POSITION, SHOOTINGPOSITION
+        LATCHED, POSITION, SHOOTINGPOSITION, DONE
     }
 
     public IntakeShootSequence() {
@@ -34,9 +34,11 @@ public class IntakeShootSequence extends Command {
         untilNextState++;
         switch (currentBallState) {
             case LATCHED:
+
                 if (untilNextState > 40)
                     intake.SetIntakeArmDown();
                 intake.Roll(RollerAction.IN);
+
                 if (intake.InDefencesCrossingPosition()) {
                     System.out.println("Switching");
                     currentBallState = BallState.POSITION;
@@ -47,11 +49,14 @@ public class IntakeShootSequence extends Command {
             case POSITION:
                 intake.Roll(RollerAction.IN);
                 System.out.println("In position.");
-                if (intake.InShooterPosition()) {
+
+                if (untilNextState > 40) {
                     currentBallState = BallState.SHOOTINGPOSITION;
                     // intake.SetIntakeArmDown();
                     intake.Roll(RollerAction.STOP);
                 }
+                else if (intake.InShooterPosition())
+                    untilNextState = 0;
                 break;
             case SHOOTINGPOSITION:
                 break;
