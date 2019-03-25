@@ -84,7 +84,9 @@ public class DriveTrain extends Subsystem {
         // diffDrive.arcadeDrive(outputX, outputY);
 
         // cacheX = outputX; cacheY = outputY;
-        diffDrive.arcadeDrive(x, y);
+        double safeX = Math.min(x, 0.8);
+        double safeY = Math.min(y, 0.8);
+        diffDrive.arcadeDrive(safeX, safeY, true);
     }
 
     public void SendValuesToSmartDashboard() {

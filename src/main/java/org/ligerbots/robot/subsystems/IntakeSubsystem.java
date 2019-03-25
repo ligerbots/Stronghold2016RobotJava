@@ -98,17 +98,22 @@ public class IntakeSubsystem extends Subsystem {
         return (distanceSensorValue > 1.5) || inShooterSwitch.get();
     }
 
+    public boolean IntakeSwitchDown() {
+        return intakeUpSwitch.get() == false;
+    }
+
     public boolean InDefencesCrossingPosition() {
         return inDefenseSwitch.get();
     }
 
     public boolean IntakeReadyToFire() {
-        return (GetIntakeArmValue() == Value.kReverse) && InShooterPosition();
+        return IntakeSwitchDown();
     }
 
     public void SendValuesToSmartDashboard() {
         SmartDashboard.putBoolean("Intake/1stPosition", InDefencesCrossingPosition());
         SmartDashboard.putBoolean("Intake/2ndPosition", ShooterSwitchPressed());
+        SmartDashboard.putBoolean("Intake/IntakeSwitch", intakeUpSwitch.get());
         SmartDashboard.putNumber("Intake/Distance", ballPositionSensor.getVoltage());
     }
 
