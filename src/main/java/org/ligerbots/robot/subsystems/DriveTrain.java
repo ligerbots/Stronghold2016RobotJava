@@ -85,7 +85,9 @@ public class DriveTrain extends Subsystem {
 
         // cacheX = outputX; cacheY = outputY;
         double safeX = Math.min(x, 0.8);
+        safeX = Math.max(safeX, -0.8);
         double safeY = Math.min(y, 0.8);
+        safeY = Math.max(safeY, -0.8);
         diffDrive.arcadeDrive(safeX, safeY, true);
     }
 

@@ -10,6 +10,8 @@ package org.ligerbots.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.ligerbots.robot.Commands.*;
 
 /**
@@ -86,5 +88,11 @@ public class OI {
 		WedgeToggleCommand.whenPressed(new WedgeToggleCommand());
 		
 		CompressorToggleCommand.whenPressed(new CompressorToggleCommand());
+
+		//Commands into smartdashboard
+		SmartDashboard.putData("IntakeCommand", new IntakeShootSequence());
+		SmartDashboard.putData("ToggleIntakeCommand", new IntakeToggleCommand());
+		SmartDashboard.putData("CompressorToggle", new CompressorToggleCommand());
+		SmartDashboard.putData("ShootCommand", new ShootCommand());
 	}
 }

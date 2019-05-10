@@ -7,6 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class JoystickDriveCommand extends Command {
     XboxController controller;
+    double cacheX;
+    double cacheY;
+    double lastX;
+    double lastY;
+    double time;
 
     public JoystickDriveCommand() {
         // Use requires() here to declare subsystem dependencies
@@ -20,12 +25,29 @@ public class JoystickDriveCommand extends Command {
         setInterruptible(true);
 
         controller = Robot.oi.xbox;
+        cacheX = 0;
+        cacheY = 0;
+        time = 0.2;
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.drivetrain.drive(controller.getRawAxis(1), -controller.getRawAxis(4));
+        double driveX, driveY;
+        driveX = controller.getRawAxis(1) * time;
+        driveY = -controller.getRawAxis(4) * time;
+        if ((Math.abs(controller.getRawAxis(1)) < 0.1) && (Math.abs(controller.getRawAxis(4)) < 0.2)) {
+            time = 0.2;
+        }
+        else {
+            time = Math.min(time+0.01, 0.8);
+        }
+        //Robot.drivetrain.drive(controller.getRawAxis(1), -controller.getRawAxis(4));
+        
+        System.out.println(time);
+        Robot.drivetrain.drive(driveX, driveY);
+        lastX = controller.getRawAxis(1);
+        lastY = -controller.getRawAxis(4);
     }
 
     // Make this return true when this Command no longer needs to run execute()
