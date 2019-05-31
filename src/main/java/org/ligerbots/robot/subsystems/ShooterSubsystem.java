@@ -1,8 +1,8 @@
-package org.ligerbots.robot.Subsystems;
+package org.ligerbots.robot.subsystems;
 
 import org.ligerbots.robot.Robot;
 import org.ligerbots.robot.RobotMap;
-import org.ligerbots.robot.Subsystems.LEDSubsystem.LEDState;
+import org.ligerbots.robot.subsystems.LEDSubsystem.LEDState;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;

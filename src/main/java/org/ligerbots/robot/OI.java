@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.ligerbots.robot.Commands.*;
+import org.ligerbots.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,7 +31,7 @@ public class OI {
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
-	//// TRIGGERING COMMANDS WITH BUTTONS
+	//// TRIGGERING commands WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
 	// three ways:
 
@@ -89,7 +89,7 @@ public class OI {
 		
 		CompressorToggleCommand.whenPressed(new CompressorToggleCommand());
 
-		//Commands into smartdashboard
+		//commands into smartdashboard
 		SmartDashboard.putData("IntakeCommand", new IntakeShootSequence());
 		SmartDashboard.putData("ToggleIntakeCommand", new IntakeToggleCommand());
 		SmartDashboard.putData("CompressorToggle", new CompressorToggleCommand());

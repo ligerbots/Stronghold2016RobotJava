@@ -1,7 +1,7 @@
-package org.ligerbots.robot.Commands;
+package org.ligerbots.robot.commands;
 
 import org.ligerbots.robot.Robot;
-import org.ligerbots.robot.Subsystems.DriveTrain;
+import org.ligerbots.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 

@@ -1,7 +1,7 @@
-package org.ligerbots.robot.Commands;
+package org.ligerbots.robot.commands;
 
 import org.ligerbots.robot.Robot;
-import org.ligerbots.robot.Subsystems.IntakeSubsystem;
+import org.ligerbots.robot.subsystems.IntakeSubsystem;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;

@@ -1,4 +1,4 @@
-package org.ligerbots.robot.Commands;
+package org.ligerbots.robot.commands;
 
 import org.ligerbots.robot.Robot;
 
@@ -7,12 +7,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class JoystickDriveCommand extends Command {
     XboxController controller;
-    double cacheX;
-    double cacheY;
-    double lastX;
-    double lastY;
-    double time;
-
     public JoystickDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -25,29 +19,15 @@ public class JoystickDriveCommand extends Command {
         setInterruptible(true);
 
         controller = Robot.oi.xbox;
-        cacheX = 0;
-        cacheY = 0;
-        time = 0.2;
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         double driveX, driveY;
-        driveX = controller.getRawAxis(1) * time;
-        driveY = -controller.getRawAxis(4) * time;
-        if ((Math.abs(controller.getRawAxis(1)) < 0.1) && (Math.abs(controller.getRawAxis(4)) < 0.2)) {
-            time = 0.2;
-        }
-        else {
-            time = Math.min(time+0.01, 0.8);
-        }
-        //Robot.drivetrain.drive(controller.getRawAxis(1), -controller.getRawAxis(4));
-        
-        System.out.println(time);
+        driveX = controller.getRawAxis(1);
+        driveY = -controller.getRawAxis(4);
         Robot.drivetrain.drive(driveX, driveY);
-        lastX = controller.getRawAxis(1);
-        lastY = -controller.getRawAxis(4);
     }
 
     // Make this return true when this Command no longer needs to run execute()
