@@ -64,13 +64,15 @@ public class IntakeShootSequence extends Command {
                 break;
             case SHOOTINGPOSITION:
                 break;
+            case DONE:
+                break;
         }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-      return currentBallState == currentBallState.SHOOTINGPOSITION || (untilNextState > 200);
+      return currentBallState == BallState.SHOOTINGPOSITION || (untilNextState > 200);
     }
   
     // Called once after isFinished returns true

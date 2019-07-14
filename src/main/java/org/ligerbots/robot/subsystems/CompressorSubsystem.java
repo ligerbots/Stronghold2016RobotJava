@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.ligerbots.robot.Robot;
+// import org.ligerbots.robot.Robot;
 import org.ligerbots.robot.RobotMap;
 
 public class CompressorSubsystem extends Subsystem {
