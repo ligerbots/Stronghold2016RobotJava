@@ -1,4 +1,4 @@
-package org.ligerbots.robot.Subsystems;
+package org.ligerbots.robot.subsystems;
 
 import org.ligerbots.robot.RobotMap;
 

@@ -7,20 +7,20 @@
 
 package org.ligerbots.robot;
 
-import org.ligerbots.robot.Subsystems.CompressorSubsystem;
-import org.ligerbots.robot.Subsystems.DriveTrain;
-import org.ligerbots.robot.Subsystems.FlapSubsystem;
-import org.ligerbots.robot.Subsystems.IntakeSubsystem;
-import org.ligerbots.robot.Subsystems.LEDSubsystem;
-import org.ligerbots.robot.Subsystems.ShooterSubsystem;
-import org.ligerbots.robot.Subsystems.WedgeSubsystem;
-import org.ligerbots.robot.Subsystems.LEDSubsystem.LEDState;
-import org.ligerbots.robot.Commands.IntakeRollerCommand;
-import org.ligerbots.robot.Commands.JoystickDriveCommand;
+import org.ligerbots.robot.subsystems.CompressorSubsystem;
+import org.ligerbots.robot.subsystems.DriveTrain;
+import org.ligerbots.robot.subsystems.FlapSubsystem;
+import org.ligerbots.robot.subsystems.IntakeSubsystem;
+import org.ligerbots.robot.subsystems.LEDSubsystem;
+import org.ligerbots.robot.subsystems.ShooterSubsystem;
+import org.ligerbots.robot.subsystems.WedgeSubsystem;
+import org.ligerbots.robot.subsystems.LEDSubsystem.LEDState;
+import org.ligerbots.robot.commands.IntakeRollerCommand;
+import org.ligerbots.robot.commands.JoystickDriveCommand;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+// import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -44,8 +44,9 @@ public class Robot extends TimedRobot {
 	public static JoystickDriveCommand joystickDrive;
 
 	public static SmartDashboard smartDashboard;
-	public static SendableChooser ledChooser;
-
+	// public static SendableChooser ledChooser;
+	// public static SendableChooser driveSpeedChooser;
+	
 	public static LEDState cachedLEDState;
 
 	public static double ticks;
@@ -73,14 +74,18 @@ public class Robot extends TimedRobot {
 		ticks = 0;
 
 		//LED Options in smartdashboard
-        ledChooser = new SendableChooser();
-        ledChooser.addOption("Red", LEDState.RED);
-        ledChooser.addOption("Blue", LEDState.BLUE);
-		ledChooser.addOption("Shoot", LEDState.SHOOT);
-		ledChooser.addOption("Auto", LEDState.AUTO);
-        ledChooser.addOption("Off", LEDState.OFF);
-		ledChooser.close();
-		smartDashboard.putData("LED State", ledChooser);
+        // ledChooser = new SendableChooser();
+        // ledChooser.addOption("Red", LEDState.RED);
+        // ledChooser.addOption("Blue", LEDState.BLUE);
+		// ledChooser.addOption("Shoot", LEDState.SHOOT);
+		// ledChooser.addOption("Auto", LEDState.AUTO);
+        // ledChooser.addOption("Off", LEDState.OFF);
+		// ledChooser.close();
+		// smartDashboard.putData("LED State", ledChooser);
+		// driveSpeedChooser = new SendableChooser();
+		// driveSpeedChooser.addOption("Igor's super fast mode", 0);
+		// driveSpeedChooser.addOption("Babby mode", 1);
+		// smartDashboard.putData("Drive Speed", driveSpeedChooser);
 	}
 
 	/**
@@ -144,11 +149,13 @@ public class Robot extends TimedRobot {
 			intake.SendValuesToSmartDashboard();
 
 			//LED Control via smartdashboard
-			LEDState currentLEDSelection = (LEDState) ledChooser.getSelected();
-			if (currentLEDSelection != cachedLEDState) {
-				cachedLEDState = currentLEDSelection;
-				leds.SetLEDs(currentLEDSelection);
-			}
+			// LEDState currentLEDSelection = (LEDState) ledChooser.getSelected();
+			// int driveSpeedState = (int) driveSpeedChooser.getSelected();
+			// if (currentLEDSelection != cachedLEDState) {
+			// 	cachedLEDState = currentLEDSelection;
+			// 	leds.SetLEDs(currentLEDSelection);
+			// }
+			// drivetrain.setDriveSpeed(driveSpeedState);
 		}
 
 		ticks++;

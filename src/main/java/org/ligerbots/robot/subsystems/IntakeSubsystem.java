@@ -1,4 +1,4 @@
-package org.ligerbots.robot.Subsystems;
+package org.ligerbots.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;

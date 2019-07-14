@@ -1,4 +1,4 @@
-package org.ligerbots.robot.Subsystems;
+package org.ligerbots.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
@@ -22,7 +22,7 @@ public class DriveTrain extends Subsystem {
     DoubleSolenoid shifterSolenoid;
     AHRS navx;
 
-    double cacheX, cacheY;
+    int driveSpeedMode;
     
     public static DifferentialDrive diffDrive;
 
@@ -42,7 +42,6 @@ public class DriveTrain extends Subsystem {
         //Initialize drive method
         diffDrive = new DifferentialDrive(leftLeader, rightLeader);
         diffDrive.setSubsystem("DriveTrain");
-        cacheX = 0; cacheY = 0;
         //Solenoid for gear shifting
         shifterSolenoid = new DoubleSolenoid(RobotMap.PCM_CAN, RobotMap.PCM_SHIFTER_HIGH_GEAR, RobotMap.PCM_SHIFTER_LOW_GEAR);
         //NAVX
@@ -84,13 +83,21 @@ public class DriveTrain extends Subsystem {
         // diffDrive.arcadeDrive(outputX, outputY);
 
         // cacheX = outputX; cacheY = outputY;
+        
         double safeX = Math.min(x, 0.8);
         safeX = Math.max(safeX, -0.8);
         double safeY = Math.min(y, 0.8);
         safeY = Math.max(safeY, -0.8);
-        diffDrive.arcadeDrive(safeX, safeY, true);
+        if (driveSpeedMode == 0) {
+            diffDrive.arcadeDrive(safeX, safeY, true);
+        }
+        else {
+            diffDrive.arcadeDrive(safeX*0.7, safeY*0.7, true);
+        }
     }
-
+    public void setDriveSpeed(int mode) {
+        driveSpeedMode = mode;
+    }
     public void SendValuesToSmartDashboard() {
         SmartDashboard.putNumber("DriveTrain/LeftOutput", getLeftOutput());
         SmartDashboard.putNumber("DriveTrain/RightOutput", getRightOutput());

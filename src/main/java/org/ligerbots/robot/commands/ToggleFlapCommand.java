@@ -1,4 +1,4 @@
-package org.ligerbots.robot.Commands;
+package org.ligerbots.robot.commands;
 
 import org.ligerbots.robot.Robot;
 

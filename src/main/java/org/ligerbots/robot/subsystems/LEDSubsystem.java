@@ -1,10 +1,10 @@
-package org.ligerbots.robot.Subsystems;
+package org.ligerbots.robot.subsystems;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-//NAVX, prevent tipping, 
+// import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
 public class LEDSubsystem extends Subsystem {
     I2C ledI2C;
     

@@ -1,0 +1,5 @@
+# Stick with Windows CR-LF endings, in case people use Linux or Mac
+*.c text eol=crlf
+*.h text eol=crlf
+.java text eol=crlf
+*.sln text eol=crlf

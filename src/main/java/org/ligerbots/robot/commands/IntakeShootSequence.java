@@ -1,15 +1,18 @@
-package org.ligerbots.robot.Commands;
+package org.ligerbots.robot.commands;
 
 import org.ligerbots.robot.Robot;
-import org.ligerbots.robot.Subsystems.IntakeSubsystem;
-import org.ligerbots.robot.Subsystems.IntakeSubsystem.RollerAction;
+import org.ligerbots.robot.subsystems.IntakeSubsystem;
+import org.ligerbots.robot.subsystems.IntakeSubsystem.RollerAction;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeShootSequence extends Command {
     IntakeSubsystem intake;
     BallState currentBallState;
     double untilNextState;
+
+    XboxController xbox;
     
     static enum BallState {
         LATCHED, POSITION, SHOOTINGPOSITION, DONE
@@ -26,6 +29,7 @@ public class IntakeShootSequence extends Command {
         intake = Robot.intake;
         currentBallState = BallState.LATCHED;
         untilNextState = 0;
+        xbox = Robot.oi.xbox;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -60,13 +64,15 @@ public class IntakeShootSequence extends Command {
                 break;
             case SHOOTINGPOSITION:
                 break;
+            case DONE:
+                break;
         }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-      return currentBallState == currentBallState.SHOOTINGPOSITION;
+      return currentBallState == BallState.SHOOTINGPOSITION || (untilNextState > 200);
     }
   
     // Called once after isFinished returns true
@@ -78,5 +84,6 @@ public class IntakeShootSequence extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+
     }
 }  
