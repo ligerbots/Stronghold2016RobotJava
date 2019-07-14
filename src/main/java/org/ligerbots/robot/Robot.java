@@ -44,8 +44,8 @@ public class Robot extends TimedRobot {
 	public static JoystickDriveCommand joystickDrive;
 
 	public static SmartDashboard smartDashboard;
-	public static SendableChooser ledChooser;
-	public static SendableChooser driveSpeedChooser;
+	// public static SendableChooser ledChooser;
+	// public static SendableChooser driveSpeedChooser;
 	
 	public static LEDState cachedLEDState;
 
@@ -74,18 +74,18 @@ public class Robot extends TimedRobot {
 		ticks = 0;
 
 		//LED Options in smartdashboard
-        ledChooser = new SendableChooser();
-        ledChooser.addOption("Red", LEDState.RED);
-        ledChooser.addOption("Blue", LEDState.BLUE);
-		ledChooser.addOption("Shoot", LEDState.SHOOT);
-		ledChooser.addOption("Auto", LEDState.AUTO);
-        ledChooser.addOption("Off", LEDState.OFF);
-		ledChooser.close();
-		smartDashboard.putData("LED State", ledChooser);
-		driveSpeedChooser = new SendableChooser();
-		driveSpeedChooser.addOption("Igor's super fast mode", 0);
-		driveSpeedChooser.addOption("Babby mode", 1);
-		smartDashboard.putData("Drive Speed", driveSpeedChooser);
+        // ledChooser = new SendableChooser();
+        // ledChooser.addOption("Red", LEDState.RED);
+        // ledChooser.addOption("Blue", LEDState.BLUE);
+		// ledChooser.addOption("Shoot", LEDState.SHOOT);
+		// ledChooser.addOption("Auto", LEDState.AUTO);
+        // ledChooser.addOption("Off", LEDState.OFF);
+		// ledChooser.close();
+		// smartDashboard.putData("LED State", ledChooser);
+		// driveSpeedChooser = new SendableChooser();
+		// driveSpeedChooser.addOption("Igor's super fast mode", 0);
+		// driveSpeedChooser.addOption("Babby mode", 1);
+		// smartDashboard.putData("Drive Speed", driveSpeedChooser);
 	}
 
 	/**
@@ -149,13 +149,13 @@ public class Robot extends TimedRobot {
 			intake.SendValuesToSmartDashboard();
 
 			//LED Control via smartdashboard
-			LEDState currentLEDSelection = (LEDState) ledChooser.getSelected();
-			int driveSpeedState = (int) driveSpeedChooser.getSelected();
-			if (currentLEDSelection != cachedLEDState) {
-				cachedLEDState = currentLEDSelection;
-				leds.SetLEDs(currentLEDSelection);
-			}
-			drivetrain.setDriveSpeed(driveSpeedState);
+			// LEDState currentLEDSelection = (LEDState) ledChooser.getSelected();
+			// int driveSpeedState = (int) driveSpeedChooser.getSelected();
+			// if (currentLEDSelection != cachedLEDState) {
+			// 	cachedLEDState = currentLEDSelection;
+			// 	leds.SetLEDs(currentLEDSelection);
+			// }
+			// drivetrain.setDriveSpeed(driveSpeedState);
 		}
 
 		ticks++;
